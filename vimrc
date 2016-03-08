@@ -74,4 +74,5 @@ vnoremap <silent> Q :normal @q<CR>
 nnoremap <silent> <leader>w :set wrap<CR>
 nnoremap <silent> <leader>W :set nowrap<CR>
 nnoremap <silent> <leader>ve :set virtualedit=all<CR>
+nnoremap <silent> <leader>nove :set virtualedit=block<CR>
 nnoremap <silent> <leader>st :%s/\s*$//<CR>:nohlsearch<CR><C-L>
