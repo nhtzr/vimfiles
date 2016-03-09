@@ -6,7 +6,7 @@ behave xterm
 " Annoying sounds stop
 set visualbell
 
-set directory=.,~/AppData
+set directory=~/AppData/Roaming
 set scrolloff=3
 set history=50
 
