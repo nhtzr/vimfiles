@@ -1,4 +1,5 @@
 execute pathogen#infect()
+execute pathogen#helptags()
 set nocompatible
 behave xterm
 
@@ -37,6 +38,7 @@ set showcmd
 set wildmenu
 set display+=lastline
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set hidden
 "
 
 syntax enable
@@ -73,11 +75,15 @@ vnoremap <S-Tab> <gv
 nnoremap Q qq
 vnoremap <silent> Q :normal @q<CR>
 
+nnoremap zK zkzx
+nnoremap zJ zjzx
+
 nnoremap <silent> <leader>w :set wrap<CR>
 nnoremap <silent> <leader>W :set nowrap<CR>
 nnoremap <silent> <leader>ve :set virtualedit=all<CR>
 nnoremap <silent> <leader>nove :set virtualedit=block<CR>
-nnoremap <silent> <leader>st :%s/\s*$//<CR>:nohlsearch<CR><C-L>
+nnoremap <silent> <leader>st :%s/\s*$//<CR>:nohlsearch<CR><C-L><C-O><C-O>
+nnoremap <silent> <leader>fdm :set foldmethod=indent<CR>
 
 
 au BufNewFile,BufRead *.ahk set bomb
