@@ -43,12 +43,12 @@ set hidden
 
 syntax enable
 filetype plugin indent on
-color harlequin
+color desert
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16_tomorrow'
-set guifont=Sauce_Code_Powerline:h9:w5:cANSI
-set guioptions-=m
-set guioptions-=T
+" set guifont=Sauce_Code_Powerline:h9:w5:cANSI
+" set guioptions-=m
+" set guioptions-=T
 
 nnoremap ; :
 vnoremap ; :
@@ -82,7 +82,7 @@ nnoremap <silent> <leader>w :set wrap<CR>
 nnoremap <silent> <leader>W :set nowrap<CR>
 nnoremap <silent> <leader>ve :set virtualedit=all<CR>
 nnoremap <silent> <leader>nove :set virtualedit=block<CR>
-nnoremap <silent> <leader>st :%s/\s*$//<CR>:nohlsearch<CR><C-L><C-O><C-O>
+nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L><C-O><C-O>
 nnoremap <silent> <leader>fdm :set foldmethod=indent<CR>
 
 

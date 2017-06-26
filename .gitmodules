@@ -67,3 +67,6 @@
 [submodule "bundle/JavaScript-Indent.git"]
 	path = bundle/JavaScript-Indent.git
 	url = https://github.com/vim-scripts/JavaScript-Indent.git
+[submodule "bundle/plantuml-syntax"]
+	path = bundle/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax.git
