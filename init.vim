@@ -94,3 +94,4 @@ fun! SuperWrite()
 endfun
 
 au BufNewFile,BufRead *.ahk set bomb
+au FocusGained * checktime
