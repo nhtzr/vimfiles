@@ -85,5 +85,11 @@ nnoremap <silent> <leader>nove :set virtualedit=block<CR>
 nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L><C-O><C-O>
 nnoremap <silent> <leader>fdm :set foldmethod=indent<CR>
 
+command W call SuperWrite()
+
+fun! SuperWrite()
+  silent write !SUDO_ASKPASS=/usr/local/bin/as-askpass.sh sudo -A tee % >/dev/null
+  edit!
+endfun
 
 au BufNewFile,BufRead *.ahk set bomb
