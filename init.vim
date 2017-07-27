@@ -25,6 +25,7 @@ set tabstop=2
 set softtabstop=2
 set expandtab
 set linebreak
+set noautoread
 
 " FROM sensible.vim
 set encoding=utf-8
