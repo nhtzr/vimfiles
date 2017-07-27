@@ -83,8 +83,8 @@ nnoremap <silent> <leader>w :set wrap<CR>
 nnoremap <silent> <leader>W :set nowrap<CR>
 nnoremap <silent> <leader>ve :set virtualedit=all<CR>
 nnoremap <silent> <leader>nove :set virtualedit=block<CR>
-nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L><C-O><C-O>
-nnoremap <silent> <leader>fdm :set foldmethod=indent<CR>
+nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
+nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
 
 command W call SuperWrite()
 
