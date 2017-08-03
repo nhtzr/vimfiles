@@ -3,11 +3,14 @@ execute pathogen#helptags()
 set nocompatible
 behave xterm
 
+let $VIMHOME=expand('<sfile>:p:h') . "/vim_tmp"
+
 " Most important
 " Annoying sounds stop
 set visualbell
 
-set directory=~/AppData/Roaming
+
+set directory=$VIMHOME
 set scrolloff=3
 set history=50
 
