@@ -14,6 +14,8 @@ set directory=$VIMHOME
 set scrolloff=3
 set history=50
 
+set wildignorecase
+set infercase
 set ignorecase
 set smartcase
 
@@ -77,6 +79,7 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 nnoremap Q qq
+vnoremap q :normal <Right>
 vnoremap <silent> Q :normal @q<CR>
 
 nnoremap zK zkzx
@@ -88,15 +91,4 @@ nnoremap <silent> <leader>v :set virtualedit=all<CR>
 nnoremap <silent> <leader>V :set virtualedit=block<CR>
 nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
 nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
-
-command W call SuperWrite()
-
-fun! SuperWrite()
-  silent write !sudo -A tee % >/dev/null
-  edit!
-endfun
-
-au BufNewFile,BufRead *.ahk set bomb
-au FocusGained * checktime
-nnoremap <C-6> <C-^>
 
