@@ -1,4 +1,4 @@
-if exists("g:loaded_superwrite)
+if exists("g:loaded_superwrite")
   finish
 endif
 
