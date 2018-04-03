@@ -92,9 +92,8 @@ nnoremap <silent> <leader>v :set virtualedit=all<CR>
 nnoremap <silent> <leader>V :set virtualedit=block<CR>
 nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
 nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
-nnoremap <silent> <leader>opt :normal 0yt=I[ -n "$" ] <Bar><Bar> F$p<CR>
-
-vnoremap <silent> <leader>opt :normal 0yt=I[ -n "$" ] <Bar><Bar> <C-V><Esc>F$p<CR>gv:Tabularize /] <Bar><Bar><CR>
+nnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> F{p<CR>
+vnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> <C-V><Esc>F{p<CR>gv:Tabularize /] <Bar><Bar><CR>
 
 augroup markdown
     au!
