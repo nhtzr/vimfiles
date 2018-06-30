@@ -3,14 +3,14 @@ execute pathogen#helptags()
 set nocompatible
 behave xterm
 
-let $VIMHOME=expand('<sfile>:p:h') . "/vim_tmp"
+let $VIMTMP=expand('<sfile>:p:h') . "/vim_tmp"
 
 " Most important
 " Annoying sounds stop
 set visualbell
 
 
-set directory=$VIMHOME
+set directory=$VIMTMP
 set scrolloff=3
 set history=50
 
@@ -51,6 +51,8 @@ syntax enable
 filetype plugin indent on
 color desert
 
+let g:scratch_persistence_file=$VIMTMP . '.scratch'
+let g:scratch_no_mappings=1
 let g:gitgutter_diff_base='HEAD'
 let g:gitgutter_diff_args='-w'
 let g:gitgutter_map_keys=0
@@ -112,3 +114,6 @@ nnoremap <silent> <leader>ha :GitGutterStageHunk<CR>
 nnoremap <silent> <leader>hr :GitGutterUndoHunk<CR>
 nnoremap <silent> <leader>gg :GitGutter<CR>
 
+xnoremap <silent> gs :call scratch#selection(0)<cr>
+nnoremap <silent> gs :call scratch#open(0)<cr>
+nnoremap <silent> gS :call scratch#insert(0)<cr>
