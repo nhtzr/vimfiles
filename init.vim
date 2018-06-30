@@ -117,3 +117,5 @@ nnoremap <silent> <leader>gg :GitGutter<CR>
 xnoremap <silent> gs :call scratch#selection(0)<cr>
 nnoremap <silent> gs :call scratch#open(0)<cr>
 nnoremap <silent> gS :call scratch#insert(0)<cr>
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-\> <Esc>
