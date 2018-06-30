@@ -50,11 +50,24 @@ set hidden
 syntax enable
 filetype plugin indent on
 color desert
+
+let g:gitgutter_diff_base='HEAD'
+let g:gitgutter_diff_args='-w'
+let g:gitgutter_map_keys=0
+let g:gitgutter_enabled=0
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16_tomorrow'
+
 " set guifont=Sauce_Code_Powerline:h9:w5:cANSI
 " set guioptions-=m
 " set guioptions-=T
+
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
 
 nnoremap ; :
 vnoremap ; :
@@ -94,3 +107,8 @@ nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
 nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
 nnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> F{p<CR>
 vnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> <C-V><Esc>F{p<CR>gv:Tabularize /] <Bar><Bar><CR>
+nnoremap <silent> <leader>hh :GitGutterToggle<CR>
+nnoremap <silent> <leader>ha :GitGutterStageHunk<CR>
+nnoremap <silent> <leader>hr :GitGutterUndoHunk<CR>
+nnoremap <silent> <leader>gg :GitGutter<CR>
+
