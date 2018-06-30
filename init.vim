@@ -51,7 +51,7 @@ syntax enable
 filetype plugin indent on
 color desert
 
-let g:scratch_persistence_file=$VIMTMP . '.scratch'
+let g:scratch_persistence_file=$VIMTMP . '/.scratch'
 let g:scratch_no_mappings=1
 let g:gitgutter_diff_base='HEAD'
 let g:gitgutter_diff_args='-w'
