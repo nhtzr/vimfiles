@@ -31,6 +31,7 @@ set softtabstop=2
 set expandtab
 set linebreak
 set noautoread
+set foldlevel=9999
 
 " FROM sensible.vim
 set encoding=utf-8
