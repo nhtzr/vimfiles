@@ -64,3 +64,6 @@
 [submodule "bundle/vim-yaml-folds"]
 	path = bundle/vim-yaml-folds
 	url = git@github.com:pedrohdz/vim-yaml-folds.git
+[submodule "bundle/vim-color-spring-night"]
+	path = bundle/vim-color-spring-night
+	url = git@github.com:rhysd/vim-color-spring-night
