@@ -50,8 +50,11 @@ set hidden
 
 syntax enable
 filetype plugin indent on
-colorscheme desert
+
+" Colors
 set termguicolors
+colorscheme spring-night
+highlight LineNr guibg=NONE
 
 let g:scratch_persistence_file=$VIMTMP . '/.scratch'
 let g:scratch_no_mappings=1
