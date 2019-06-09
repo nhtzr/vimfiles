@@ -50,7 +50,8 @@ set hidden
 
 syntax enable
 filetype plugin indent on
-color desert
+colorscheme desert
+set termguicolors
 
 let g:scratch_persistence_file=$VIMTMP . '/.scratch'
 let g:scratch_no_mappings=1
@@ -65,29 +66,21 @@ let g:airline_theme = 'base16_tomorrow'
 " set guioptions-=m
 " set guioptions-=T
 
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-omap ih <Plug>GitGutterTextObjectInnerPending
-omap ah <Plug>GitGutterTextObjectOuterPending
-xmap ih <Plug>GitGutterTextObjectInnerVisual
-xmap ah <Plug>GitGutterTextObjectOuterVisual
-
+" <<Pressing shift is hard>> bindings
 nnoremap ; :
 vnoremap ; :
 nnoremap @; @:
-
 nnoremap , ;
 vnoremap , ;
 
 nnoremap Y y$
 vnoremap Y $y
 
+" Native copy bindings
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
-
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
 
@@ -102,22 +95,42 @@ vnoremap <silent> @ :normal @q<CR>
 nnoremap zK zkzx
 nnoremap zJ zjzx
 
+" Settings bindings
 nnoremap <silent> <leader>w :set wrap<CR>
 nnoremap <silent> <leader>W :set nowrap<CR>
 nnoremap <silent> <leader>v :set virtualedit=all<CR>
 nnoremap <silent> <leader>V :set virtualedit=block<CR>
+
+" Cleanup bindings
 nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
 nnoremap <silent> <leader>ss :s/\s\+/ /g<CR>:nohlsearch<CR><C-L>``
+
+" Folding
 nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
+nnoremap <silent> <leader>fl0 :set foldlevel=0<CR>
+
+" bash stuff
 nnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> F{p<CR>
 vnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> <C-V><Esc>F{p<CR>gv:Tabularize /] <Bar><Bar><CR>
-nnoremap <silent> <leader>hh :GitGutterToggle<CR>
-nnoremap <silent> <leader>ha :GitGutterStageHunk<CR>
-nnoremap <silent> <leader>hr :GitGutterUndoHunk<CR>
+
+" Gitgutter bindings
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
+nnoremap <silent> <leader>gga :GitGutterStageHunk<CR>
+nnoremap <silent> <leader>ggr :GitGutterUndoHunk<CR>
+nnoremap <silent> <leader>ggt :GitGutterToggle<CR>
 nnoremap <silent> <leader>gg :GitGutter<CR>
 
+" Scratch bindings
 xnoremap <silent> gs :call scratch#selection(0)<cr>
 nnoremap <silent> gs :call scratch#open(0)<cr>
 nnoremap <silent> gS :call scratch#insert(0)<cr>
+
+" Terminal remap
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-\> <Esc>
+
