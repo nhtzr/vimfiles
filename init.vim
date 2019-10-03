@@ -107,6 +107,8 @@ nnoremap <silent> <leader>V :set virtualedit=block<CR>
 " Cleanup bindings
 nnoremap <silent> <leader>st :%s/\s\+$//<CR>:nohlsearch<CR><C-L>``
 nnoremap <silent> <leader>ss :s/\s\+/ /g<CR>:nohlsearch<CR><C-L>``
+nnoremap <silent> <leader>sr :s/\s\+//g<CR>:nohlsearch<CR><C-L>``
+vnoremap <silent> <leader>sr :s/\s\+//g<CR>:nohlsearch<CR><C-L>``
 
 " Folding
 nnoremap <silent> <leader>fmi :set foldmethod=indent<CR>
@@ -123,10 +125,11 @@ omap ih <Plug>GitGutterTextObjectInnerPending
 omap ah <Plug>GitGutterTextObjectOuterPending
 xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
+nnoremap <silent> <leader>ggr :GitGutter<CR>
 nnoremap <silent> <leader>gga :GitGutterStageHunk<CR>
-nnoremap <silent> <leader>ggr :GitGutterUndoHunk<CR>
+nnoremap <silent> <leader>ggu :GitGutterUndoHunk<CR>
 nnoremap <silent> <leader>ggt :GitGutterToggle<CR>
-nnoremap <silent> <leader>gg :GitGutter<CR>
+nnoremap <silent> <leader>ggp :GitGutterPreviewHunk<CR>
 
 " Scratch bindings
 xnoremap <silent> gs :call scratch#selection(0)<cr>
