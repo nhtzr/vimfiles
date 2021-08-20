@@ -117,6 +117,8 @@ nnoremap <silent> <leader>fl0 :set foldlevel=0<CR>
 " bash stuff
 nnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> F{p<CR>
 vnoremap <silent> <leader>opt :normal 0yt=I[ -n "${:-}" ] <Bar><Bar> <C-V><Esc>F{p<CR>gv:Tabularize /] <Bar><Bar><CR>
+nnoremap <silent> <leader>bmain :set paste<CR>:normal Iif [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then<C-V><CR>  set -ueo pipefail<C-V><CR>  main "$@"<C-V><CR>fi<C-V><CR><CR>:set nopaste<CR>
+vnoremap <silent> <leader>bmain :normal 0I  <CR>:set paste<CR>:normal g'<Omain() {<CR>:normal g'>o}<C-V><CR><CR>:set nopaste<CR>:normal Go<CR>:normal <leader>bmain<CR>
 
 " Gitgutter bindings
 nmap ]h <Plug>GitGutterNextHunk
