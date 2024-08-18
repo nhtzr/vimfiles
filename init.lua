@@ -14,6 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { 'echasnovski/mini.nvim', version = false },
+  { "NeogitOrg/neogit",
+     dependencies = { "nvim-lua/plenary.nvim" },
+  },
 })
 require('mini.ai').setup({
   custom_textobjects = {
@@ -34,6 +37,67 @@ require('mini.align').setup({
   }
 })
 require('mini.trailspace').setup()
+function requireNeogit()
+  local neogit = require('neogit')
+  neogit.setup {
+    kind = "replace",
+    log_view = {
+      kind = "replace"
+    },
+    reflog_view = {
+      kind = "replace",
+    },
+    popup = {
+      kind = "vsplit"
+    },
+    mappings = {
+      popup = {
+        ["?"] = "HelpPopup",
+        ["A"] = false,
+        ["d"] = false,
+        ["M"] = false,
+        ["P"] = false,
+        ["X"] = false,
+        ["Z"] = false,
+        ["i"] = false,
+        ["t"] = false,
+        ["b"] = false,
+        ["B"] = false,
+        ["w"] = false,
+        ["c"] = false,
+        ["f"] = false,
+        ["l"] = false,
+        ["m"] = false,
+        ["p"] = false,
+        ["r"] = false,
+        ["v"] = false,
+      },
+      rebase_editor = {
+          ["p"] = false,
+          ["r"] = false,
+          ["e"] = false,
+          ["s"] = false,
+          ["f"] = false,
+          ["x"] = false,
+          ["d"] = false,
+          ["b"] = false,
+          ["q"] = false,
+          ["o"] = "OpenCommit",
+          ["gk"] = "MoveUp",
+          ["gj"] = "MoveDown",
+          ["<c-c><c-c>"] = "Submit",
+          ["<c-c><c-k>"] = "Abort",
+          ["[c"] = "OpenOrScrollUp",
+          ["]c"] = "OpenOrScrollDown",
+      },
+      status = {
+        ["o"] = "GoToFile",
+      }
+    },
+  }
+  neogit.action('log', 'log_head')()
+  vim.cmd.normal('gg')
+end
 
 -- Most important
 -- Annoying sounds stop
@@ -90,7 +154,7 @@ function normal_parens()
     hi _parens ctermfg=NONE ctermbg=NONE
   ]])
 end
-vim.api.nvim_create_autocmd('Syntax', {pattern="*", callback = normal_parens})
+-- vim.api.nvim_create_autocmd('Syntax', {pattern="*", callback = normal_parens})
 
 -- Plugin options
 vim.g.scratch_persistence_file = vim.fn.stdpath('data') .. '/.scratch'
@@ -126,16 +190,17 @@ vim.keymap.set('n', 'zK', 'zkzx', { noremap = true })
 vim.keymap.set('n', 'zJ', 'zjzx', { noremap = true })
 
 -- Settings bindings
-vim.keymap.set('n', '<leader>w', function() vim.o.wrap=true end,   { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>W', function() vim.o.wrap=false end,  { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>v', function() vim.o.virtualedit='all' end,    { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>V', function() vim.o.virtualedit='block' end,  { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>b', normal_parens, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>w', function() vim.o.wrap=true           end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>W', function() vim.o.wrap=false          end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>v', function() vim.o.virtualedit='all'   end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>V', function() vim.o.virtualedit='block' end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>b', normal_parens,                            { noremap = true, silent = true })
 
 -- Cleanup bindings
-vim.keymap.set('n', '<leader>st', MiniTrailspace.trim,                        { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sT', MiniTrailspace.trim_last_lines,             { noremap = true, silent = true })
-vim.keymap.set('n', '<C-L>', ':nohlsearch<CR><C-L>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>st', MiniTrailspace.trim,             { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>sT', MiniTrailspace.trim_last_lines,  { noremap = true, silent = true })
+-- No longer necessary, see :help Ctrl-L
+-- vim.keymap.set('n', '<C-L>',      function() vim.o.hlsearch=false     end, { noremap = true, silent = true })
 
 -- Folding
 vim.keymap.set('n', '<leader>fmi', function() vim.o.foldmethod='indent' end,  { noremap = true, silent = true })
