@@ -38,6 +38,7 @@ require('mini.align').setup({
 })
 require('mini.trailspace').setup()
 function requireNeogit()
+  vim.keymap.set('n', 'q', vim.cmd.quit, { noremap = true, silent = true })
   local neogit = require('neogit')
   neogit.setup {
     kind = "replace",
@@ -51,52 +52,27 @@ function requireNeogit()
       kind = "vsplit"
     },
     mappings = {
-      popup = {
-        ["?"] = "HelpPopup",
-        ["A"] = false,
-        ["d"] = false,
-        ["M"] = false,
-        ["P"] = false,
-        ["X"] = false,
-        ["Z"] = false,
-        ["i"] = false,
-        ["t"] = false,
-        ["b"] = false,
-        ["B"] = false,
-        ["w"] = false,
-        ["c"] = false,
-        ["f"] = false,
-        ["l"] = false,
-        ["m"] = false,
-        ["p"] = false,
-        ["r"] = false,
-        ["v"] = false,
-      },
-      rebase_editor = {
-          ["p"] = false,
-          ["r"] = false,
-          ["e"] = false,
-          ["s"] = false,
-          ["f"] = false,
-          ["x"] = false,
-          ["d"] = false,
-          ["b"] = false,
-          ["q"] = false,
-          ["o"] = "OpenCommit",
-          ["gk"] = "MoveUp",
-          ["gj"] = "MoveDown",
-          ["<c-c><c-c>"] = "Submit",
-          ["<c-c><c-k>"] = "Abort",
-          ["[c"] = "OpenOrScrollUp",
-          ["]c"] = "OpenOrScrollDown",
-      },
       status = {
         ["o"] = "GoToFile",
+        ["q"] = false,
+        ["I"] = false,
+        ["x"] = false,
+        ["s"] = false,
+        ["S"] = false,
+        ["<c-s>"] = false,
+        ["u"] = false,
+        ["K"] = false,
+        ["U"] = false,
       }
     },
   }
-  neogit.action('log', 'log_head')()
-  vim.cmd.normal('gg')
+  local git = require("neogit.lib.git")
+  function f(offset)
+    return git.log.list( { 'HEAD', ("--skip=%s"):format(offset) }, nil, nil, false, nil )
+  end
+  local commits = git.log.list( {'HEAD'}, nil, nil, false, nil )
+  local LogViewBuffer = require("neogit.buffers.log_view")
+  LogViewBuffer.new( commits, {}, {}, f, "Commits in " .. git.branch.current()):open()
 end
 
 -- Most important
