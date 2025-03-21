@@ -13,7 +13,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
   { 'echasnovski/mini.nvim', version = false },
+  { "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+    end,
+    default_keymappings_enabled = false,
+  },
 })
 require('mini.ai').setup({
   custom_textobjects = {
@@ -130,6 +141,13 @@ vim.keymap.set('n', '<leader>w', function() vim.o.wrap=true end,   { noremap = t
 vim.keymap.set('n', '<leader>W', function() vim.o.wrap=false end,  { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>v', function() vim.o.virtualedit='all' end,    { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>V', function() vim.o.virtualedit='block' end,  { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>N', function() vim.cmd([[
+  syntax clear Repeat
+  syntax match Repeat /^\(.*\)$\n\1$/
+]]) end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>n', ([[
+  /^\(.*\)$\n\1$/
+]]), { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>b', normal_parens, { noremap = true, silent = true })
 
 -- Cleanup bindings
@@ -141,3 +159,5 @@ vim.keymap.set('n', '<C-L>', ':nohlsearch<CR><C-L>', { noremap = true, silent = 
 vim.keymap.set('n', '<leader>fmi', function() vim.o.foldmethod='indent' end,  { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>f0',  function() vim.o.foldlevel=0 end,          { noremap = true, silent = true })
 
+vim.keymap.set('n', 'gu', function() vim.cmd('TextCaseOpenTelescopeQuickChange') end, { silent = true})
+vim.keymap.set('v', 'gu', function() vim.cmd('TextCaseOpenTelescopeQuickChange') end, { silent = true})
